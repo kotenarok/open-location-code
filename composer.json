@@ -1,5 +1,5 @@
 {
-    "name": "bogdaan/open-location-code",
+    "name": "kotenarok/open-location-code",
     "type": "library",
     "description": "Open location code for php",
     "keywords": ["olc", "plus.codes", "open location code"],
