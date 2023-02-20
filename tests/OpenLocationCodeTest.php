@@ -3,11 +3,12 @@
 namespace OpenLocationCode\Tests;
 
 use OpenLocationCode\OpenLocationCode;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author hcbogdan
  */
-class OpenLocationCodeTest extends \PHPUnit_Framework_TestCase
+class OpenLocationCodeTest extends TestCase
 {
     /**
      * @covers OpenLocationCode::decode
@@ -34,6 +35,8 @@ class OpenLocationCodeTest extends \PHPUnit_Framework_TestCase
             '62H30000+,1,181,1,-179,2,-178',
         );
 
+        $precision = 4;
+
         foreach ($data as $row) {
             $item = explode(',', $row);
 
@@ -45,10 +48,10 @@ class OpenLocationCodeTest extends \PHPUnit_Framework_TestCase
 
             $this->assertEquals($item[0], $code, 'encode failed: '.$row);
 
-            $this->assertEquals($item[3], $codeArea['latitudeLo'], '', 0.001);
-            $this->assertEquals($item[4], $codeArea['longitudeLo'], '', 0.001);
-            $this->assertEquals($item[5], $codeArea['latitudeHi'], '', 0.001);
-            $this->assertEquals($item[6], $codeArea['longitudeHi'], '', 0.001);
+            $this->assertEquals(round($item[3], $precision), round($codeArea['latitudeLo'], $precision), '', 0.001);
+            $this->assertEquals(round($item[4], $precision), round($codeArea['longitudeLo'], $precision), '', 0.001);
+            $this->assertEquals(round($item[5], $precision), round($codeArea['latitudeHi'], $precision), '', 0.001);
+            $this->assertEquals(round($item[6], $precision), round($codeArea['longitudeHi'], $precision), '', 0.001);
         }
     }
 
